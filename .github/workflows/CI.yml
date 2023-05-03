@@ -25,8 +25,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
         ports:
-          - 5432:5432    
-    
+          - 5432:5432
 
     steps:
       - name: Copia os arquivos do repo

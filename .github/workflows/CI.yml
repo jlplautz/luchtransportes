@@ -43,7 +43,7 @@ jobs:
       - name: Install Dependencies 
         run: poetry install --without doc
 
-      - name: Run Tests
+      - name: Executar os testes
         run: poetry run task test --cov-report=xml
 
       - name: Verificar cobertura via codecov

@@ -28,28 +28,26 @@ jobs:
           - 5432:5432    
     
     steps:
-      - name: Copy files from repo
-      - uses: actions/checkout@v3
-      
-      - name: Set up Python 3.11.1
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.11.1'
-          cache: pip
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11.1
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.11.1'
+        cache: pip
 
-      - name: Instalar poetry
-        run: pip install poetry
+    - name: Instalar poetry
+      run: pip install poetry
 
-      - name: Install Dependencies 
-        run: poetry install --without doc
+    - name: Install Dependencies 
+      run: poetry install --without doc
 
-      - name: Setup .env
-        run: cp .env.example .env
+    - name: Setup .env
+      run: cp .env.example .env
     
-      - name: Run Tests
-        run: poetry run task test --cov-report=xml
+    - name: Run Tests
+      run: poetry run task test --cov-report=xml
 
-      - name: Verificar cobertura via codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Verificar cobertura via codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

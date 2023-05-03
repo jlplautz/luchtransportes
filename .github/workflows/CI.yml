@@ -28,19 +28,20 @@ jobs:
           - 5432:5432    
     
     steps:
-    - name: Copy files from repo
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.11.0
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.11.1'
-        cache: pip
+      - name: Copy files from repo
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python 3.11.0
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.11.1'
+          cache: pip
 
-    - name: Instalar poetry
-      run: pip install poetry
+      - name: Instalar poetry
+        run: pip install poetry
 
-    - name: Install Dependencies 
-      run: poetry install --without doc
+      - name: Install Dependencies 
+        run: poetry install --without doc
     
     # # - name: Setup .env
     # #   run: cp .env.example .env

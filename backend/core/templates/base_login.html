@@ -1,4 +1,4 @@
-<!-- base.html -->
+<!-- base_login.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +9,7 @@
     <meta name="author" content="Themesberg">
     <meta name="generator" content="Hugo 0.107.0">
 
-    <title>LuchTransportes | Dashboard</title>
-
-    <link rel="canonical" href="https://themesberg.com/product/tailwind-css/dashboard-windster">
+    <title>Dicas de Django | Login</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,13 +26,13 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">
-    <meta name="twitter:title" content="Tailwind CSS Dashboard - Windster">
+    <meta name="twitter:title" content="Tailwind CSS Login - Windster">
     <meta name="twitter:description" content="Get started with a free and open source Tailwind CSS admin dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
     <meta name="twitter:image" content="https://demo.themesberg.com/windster/">
 
     <!-- Facebook -->
     <meta property="og:url" content="https://demo.themesberg.com/windster/">
-    <meta property="og:title" content="Tailwind CSS Dashboard - Windster">
+    <meta property="og:title" content="Tailwind CSS Login - Windster">
     <meta property="og:description" content="Get started with a free and open source Tailwind CSS admin dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://demo.themesberg.com/docs/images/og-image.jpg">
@@ -43,20 +41,7 @@
   </head>
   <body class="bg-gray-50">
 
-    {% include "includes/nav.html" %}
-    <div class="flex overflow-hidden bg-white pt-16">
-
-      {% include "includes/aside.html" %}
-
-      <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
-
-      <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
-        {% block content %}{% endblock content %}
-        {% include "includes/footer.html" %}
-
-      </div>
-
-    </div>
+    {% block content %}{% endblock content %}
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{% static 'js/app.bundle.js' %}"></script>

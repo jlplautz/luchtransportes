@@ -60,15 +60,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         """Returns the short name for the user."""
         return self.first_name
 
+    def get_last_name(self):
+        """Returns the last name for the user."""
+        return self.last_name
+
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Sends an email to this User."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def get_absolute_url(self):
+        return reverse_lazy('user_detail', kwargs={'pk': self.pk})
 
     @property
     def is_staff(self):
         """Is the user a member of staff?"""
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
-    def get_absolute_url(self):
-        return reverse_lazy('user_detail', kwargs={'pk': self.pk})

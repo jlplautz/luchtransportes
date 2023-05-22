@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'backend.core',
+    'backend.driver',
+    'backend.freight',
+    'backend.truck',
     'widget_tweaks',
 ]
 

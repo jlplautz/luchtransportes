@@ -82,3 +82,10 @@ def user_update(request, pk):
         'form': form,
     }
     return render(request, template_name, context)
+
+
+def user_delete(request, pk):
+    user = User.objects.get(pk=pk)
+    user.delete()
+    template_name = 'accounts/user_list.html'
+    return render(request, template_name)

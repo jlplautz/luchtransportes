@@ -9,6 +9,7 @@ user_patterns = [
     path('create/', v.user_create, name='user_create'),
     path('<int:pk>/', v.user_detail, name='user_detail'),
     path('<int:pk>/update/', v.user_update, name='user_update'),
+    path('<int:pk>/delete/', v.user_delete, name='user_list'),
 ]
 
 urlpatterns = [

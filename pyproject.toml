@@ -14,6 +14,7 @@ django-widget-tweaks = "^1.4.12"
 psycopg2-binary = "^2.9.6"
 dj-database-url = "^2.0.0"
 gunicorn = "20.1.0"
+six = "^1.16.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -37,7 +38,7 @@ python_files = [
     "*tests.py",
 ]
 minversion = "6.0"
-addopts = "-ra -q -v"
+addopts = "-ra -q -v -p no:warnings"
 
 [tool.isort]
 profile = "black"

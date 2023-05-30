@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Truck
+from .models import Truck, TruckFees
 
 
 class CustomTruckForm(forms.ModelForm):
@@ -20,4 +20,21 @@ class CustomTruckForm(forms.ModelForm):
             'placa',
             'Chassis',
             'odometro',
+        )
+
+
+class CustomTruckFeesForm(forms.ModelForm):
+    required_css_class = 'required'
+
+    class Meta:
+        model = TruckFees
+        fields = (
+            'contrato',
+            'cod_operacao',
+            'data',
+            'caminhao',
+            'valor_adiant_fixo',
+            'valor_saldo_fixo',
+            'valor_desc_fixo',
+            'status_fixo',
         )

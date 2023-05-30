@@ -43,35 +43,28 @@
                   </div>
                 </th> {% endcomment %}
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Contrato</div>
-                  <div>Cod.Oper</div>
+                  Contrato
                 </th>
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Data</div>
+                  Cod.Oper
+                </th>          
+                <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
+                  Data
                 </th>
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Caminhão</div>
-                  Motorista</div>
+                  Caminhão
                 </th>
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Origem</div>
-                  <div>Km</div>
+                  vlr_adt_fixo
                 </th>
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Destino</div>
-                 <div> Km</div>
+                  vlr_sal_fixo
                 </th>
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Pedágio_Pgto</div>
-                  <div>Pedágio_Valor</div>
+                  vlr_des_fixo
                 </th>
                 <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Frete_Adiant</div>
-                  <div>Frete_Saldo</div>
-                </th>
-                <th scope="col" class="p-3 text-left text-xs font-lower text-gray-900 uppercase">
-                  <div>Frete_Desconto</div>
-                  <div>Frete_status</div>
+                  status_fixo
                 </th>
               </tr>
             </thead>
@@ -79,33 +72,28 @@
               {% for object in object_list %}
                 <tr class="hover:bg-gray-100">
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.contrato    |default:"---" }}</div>
-                    <div>{{ object.cod_operacao|default:"---" }}</div>
-                  </td>
-                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.data|date:"d/m/Y"|default:"---" }}</td>
-                  <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.caminhao    |default:"---" }}</div>
-                    <div>{{ object.motorista   |default:"---" }}</div>
+                    {{ object.contrato    |default:"---" }}
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.origem|default:"---" }}</div>
-                    <div>{{ object.Km_origem|default:"---" }}</div>
+                    {{ object.cod_operacao|default:"---" }}
+                  </td>
+                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
+                    {{ object.data|date:"d/m/Y"|default:"---" }}
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.destino|default:"---" }}</div>
-                    <div>{{ object.Km_destino|default:"---" }}</div>
+                    {{ object.caminhao    |default:"---" }}
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.pedagio_pgto|default:"---" }}</div>
-                    <div>{{ object.pedagio_valor|default:"---" }}</div>
+                    {{ object.valor_adiant_fixo    |default:"---" }}
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.frete_adiant_valor|default:"---" }}</div>
-                    <div>{{ object.frete_saldo_valor|default:"---" }}</div>
+                    {{ object.valor_saldo_fixo|default:"---" }}
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    <div>{{ object.frete_desc_valor|default:"---" }}</div>
-                    <div>{{ object.frete_status    |default:"---" }}</div>
+                    {{ object.valor_desc_fixo|default:"---" }}
+                  </td>
+                  <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
+                    {{ object.status_fixo|default:"---" }}
                   </td>
                   <td class="p-3 whitespace-nowrap space-x-2">
                     <a href="{% url 'freight_update' object.pk %}" class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">

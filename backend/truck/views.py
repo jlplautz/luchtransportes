@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 
-from .forms import CustomTruckForm
-from .models import Truck
+from .forms import CustomTruckFeesForm, CustomTruckForm
+from .models import Truck, TruckFees
 
 
 def truck_list(request):
@@ -11,9 +11,23 @@ def truck_list(request):
     return render(request, template_name, context)
 
 
+def truckfees_list(request):
+    template_name = 'truck/truckfees_list.html'
+    object_list = TruckFees.objects.all()
+    context = {'object_list': object_list}
+    return render(request, template_name, context)
+
+
 def truck_create(request):
     template_name = 'truck/truck_form.html'
     form = CustomTruckForm(request.POST or None)
+    context = {'form': form}
+    return render(request, template_name, context)
+
+
+def truckfees_create(request):
+    template_name = 'truck/truckfees_form.html'
+    form = CustomTruckFeesForm(request.POST or None)
     context = {'form': form}
     return render(request, template_name, context)
 

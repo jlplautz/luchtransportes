@@ -7,7 +7,7 @@ from .models import Freight
 class FreightAdmin(admin.ModelAdmin):
     list_display = (
         'data',
-        # 'caminhao',
+        'caminhao',
         'motorista',
         'origem',
         'destino',

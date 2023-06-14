@@ -78,6 +78,17 @@ black = "22.1.0"
 flake8 = ">=3.8,<5.0.0"
 
 [[package]]
+name = "chartkick"
+version = "1.0.1"
+description = "Create beautiful JavaScript charts with one line of Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "chartkick-1.0.1-py2.py3-none-any.whl", hash = "sha256:0efd9cf28f0db2397aa8562257328b431b507bf0e19c4a677b4283d1428d1599"},
+]
+
+[[package]]
 name = "click"
 version = "8.1.3"
 description = "Composable command line interface toolkit"
@@ -689,4 +700,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b22ee76a959df2401c225cc8d6f3d16427d3aede1096b23131ca2d336628aea1"
+content-hash = "5de2a0197ef7958ca9fc5d3d9579d09533158eb4e4074acd41c14b1019e88664"

@@ -1,15 +1,8 @@
 from django.db import models
+from django.urls import reverse_lazy
 
 from backend.driver.models import Driver
 from backend.truck.models import Truck
-
-# class Cidade(models.Model):
-#     choices_estado = (('SC', 'Santa-Catarina'), ('SP', 'São Paulo'))
-#     estado = models.CharField(max_length=2, choices=choices_estado)
-#     cidade = models.CharField(max_length=15)
-
-#     def __str__(self):
-#         return self.estado-self.cidade
 
 
 class Freight(models.Model):
@@ -52,5 +45,21 @@ class Freight(models.Model):
         default='FS',
     )
 
+    class Meta:
+        ordering = ('data',)
+        verbose_name = 'frete'
+        verbose_name_plural = 'fretes'
+
     def __str__(self):
         return self.origem
+
+    def list_url(self):
+        return reverse_lazy('freight:freight_list')
+
+    @property
+    def verbose_name(self):
+        return self._meta.verbose_name
+
+    @property
+    def verbose_name_plural(self):
+        return self._meta.verbose_name_plural

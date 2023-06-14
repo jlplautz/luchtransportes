@@ -1,5 +1,5 @@
 <!-- user_form.html -->
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 {% load widget_tweaks %}
 
 {% block content %}
@@ -22,7 +22,7 @@
           {% endfor %}
         {% endif %}
 
-        <form class="mt-8 space-y-6" action="." method="POST" enctype="multipart/form-data">
+        <form class="mt-8 space-y-1" action="." method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           {% for field in form.visible_fields %}
             <div>

@@ -6,10 +6,10 @@ from django.contrib.auth.views import (
 )
 from django.shortcuts import get_object_or_404, redirect, render
 
-from backend.accounts.services import send_mail_to_user
-
 from .forms import CustomUserForm
 from .models import User
+
+# from backend.accounts.services import send_mail_to_user
 
 
 @login_required
@@ -28,7 +28,7 @@ def signup(request):
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
-            send_mail_to_user(request=request, user=user)
+            # send_mail_to_user(request=request, user=user)
             return redirect('login')
 
     return render(request, template_name)
@@ -85,7 +85,10 @@ def user_update(request, pk):
 
 
 def user_delete(request, pk):
-    user = User.objects.get(pk=pk)
-    user.delete()
+    # user = User.objects.get(pk=pk)
+    instance = get_object_or_404(User, pk=pk)
+    instance.delete()
+    # user.delete()
+    # return redirect('accounts/user_list.html')
     template_name = 'accounts/user_list.html'
     return render(request, template_name)

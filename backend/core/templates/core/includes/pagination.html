@@ -1,0 +1,9 @@
+<!-- pagination.html --><!-- navigation_buttons.html -->
+{% comment %} <div class="flex items-center space-x-3">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}"
+  {% endif %}
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}"
+  {% endif %}
+</div> {% endcomment %}

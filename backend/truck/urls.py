@@ -3,10 +3,12 @@ from django.urls import path
 
 from backend.truck import views as v
 
+app_name = 'truck'
+
 urlpatterns = [
     path('truck/', v.truck_list, name='truck_list'),
-    path('truckfees/', v.truckfees_list, name='truckfees_list'),
     path('create/', v.truck_create, name='truck_create'),
     path('<int:pk>/', v.truck_detail, name='truck_detail'),
     path('<int:pk>/update/', v.truck_update, name='truck_update'),
+    path('<int:pk>/delete/', v.truck_delete, name='truck_delete'),
 ]

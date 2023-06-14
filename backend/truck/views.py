@@ -1,7 +1,7 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import CustomTruckFeesForm, CustomTruckForm
-from .models import Truck, TruckFees
+from .forms import CustomTruckForm
+from .models import Truck
 
 
 def truck_list(request):
@@ -11,24 +11,15 @@ def truck_list(request):
     return render(request, template_name, context)
 
 
-def truckfees_list(request):
-    template_name = 'truck/truckfees_list.html'
-    object_list = TruckFees.objects.all()
-    context = {'object_list': object_list}
-    return render(request, template_name, context)
-
-
 def truck_create(request):
     template_name = 'truck/truck_form.html'
     form = CustomTruckForm(request.POST or None)
     context = {'form': form}
-    return render(request, template_name, context)
 
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('truck:truck_list')
 
-def truckfees_create(request):
-    template_name = 'truck/truckfees_form.html'
-    form = CustomTruckFeesForm(request.POST or None)
-    context = {'form': form}
     return render(request, template_name, context)
 
 
@@ -44,8 +35,18 @@ def truck_update(request, pk):
     instance = get_object_or_404(Truck, pk=pk)
     form = CustomTruckForm(request.POST or None, instance=instance)
 
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('truck:truck_list')
+
     context = {
         'object': instance,
         'form': form,
     }
     return render(request, template_name, context)
+
+
+def truck_delete(request, pk):
+    instance = get_object_or_404(Truck, pk=pk)
+    instance.delete()
+    return redirect('truck:truck_list')

@@ -11,7 +11,12 @@ class Freight(models.Model):
     contrato = models.CharField(max_length=15)
     cod_operacao = models.CharField(max_length=15)
     data = models.DateField()
-    caminhao = models.ForeignKey(Truck, on_delete=models.DO_NOTHING)
+    caminhao = models.ForeignKey(
+        Truck,
+        related_name='freights',
+        verbose_name='caminhao',
+        on_delete=models.DO_NOTHING,
+    )
     motorista = models.ForeignKey(Driver, on_delete=models.DO_NOTHING)
     origem = models.CharField(max_length=30, verbose_name='Origem')
     km_origem = models.IntegerField(default=0)
@@ -47,8 +52,8 @@ class Freight(models.Model):
 
     class Meta:
         ordering = ('data',)
-        verbose_name = 'frete'
-        verbose_name_plural = 'fretes'
+        verbose_name = 'freight'
+        verbose_name_plural = 'freights'
 
     def __str__(self):
         return self.origem

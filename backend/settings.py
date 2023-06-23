@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'backend.freight',
     'backend.truck',
     'widget_tweaks',
+    # 'django_filters',
 ]
 
 MIDDLEWARE = [

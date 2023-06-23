@@ -1,11 +1,22 @@
 
 {% load static %}
 
-<script src="{% static 'chartkick/Chart.bundle.js' %}"></script>
-<script src="{% static 'chartkick/chartkick.js' %}"></script>
+<script src="{% static 'js/frete.js' %}"></script>
 
-<h1> charts </h1>
+{% block 'head' %}
+<h1> LUCHTRANSPORTES </h1>
 
-{{ chart }}
+<div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script> 
+<script>
+  Highcharts.chart('container', {{ data|safe }})
+</script> 
 
-{{ dados }}
+
+
+
+{% endblock %}
+
+
+
+

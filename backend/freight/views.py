@@ -18,13 +18,17 @@ def freight_list(request):
     search = request.GET.get('search')
 
     if search:
+        print(search)
         object_list = object_list.filter(
-            Q(caminhao__icontains=search)
-            | Q(data__icontains=search)
+            Q(data__icontains=search)
+            | Q(caminhao__placa__icontains=search)
             | Q(frete_adiant_valor__icontains=search)
+            | Q(frete_saldo_valor__icontains=search)
+            | Q(origem__icontains=search)
+            | Q(destino__icontains=search)
         )
 
-    items_per_page = 5
+    items_per_page = 10
     paginator = Paginator(object_list, items_per_page)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

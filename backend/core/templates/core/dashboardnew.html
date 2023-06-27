@@ -1,0 +1,22 @@
+
+{% load static %}
+
+<script src="{% static 'js/frete.js' %}"></script>
+
+{% block 'head' %}
+<h1> LUCHTRANSPORTES </h1>
+
+<div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script> 
+<script>
+  Highcharts.chart('container', {{ data|safe }})
+</script> 
+
+
+
+
+{% endblock %}
+
+
+
+

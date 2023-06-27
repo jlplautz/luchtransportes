@@ -26,5 +26,4 @@
 by('caminhao')
 <QuerySet [{'caminhao': 2, 'fadvlr_count': Decimal('32690.7200000000'), 'fsdvlr_count': Decimal('8830.08000000000')}, {'caminhao': 1, 'fadvlr_count': Decimal('18471.2200000000'), 'fsdvlr_count': Decimal('4579.58000000000')}]>
 
-
 https://docs.python.org/3/library/decimal.html?highlight=decimal#decimal.Decimal

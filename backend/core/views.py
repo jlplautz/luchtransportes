@@ -24,6 +24,7 @@ def dashboard(request):
         .annotate(
             fadvlr_count=Sum('frete_adiant_valor'),
             fsdvlr_count=Sum('frete_saldo_valor'),
+            distancia_count=Sum('distancia'),
         )
         .order_by('caminhao')
     )
@@ -31,17 +32,16 @@ def dashboard(request):
     categories = list()
     fadvlr_series_data = list()
     fsdvlr_series_data = list()
+    distancia_series_data = list()
 
     for entry in dataset:
         categories.append(entry['caminhao__placa'])
         print(categories)
-        # categories.append(entry['caminhao'])
         fadvlr_series_data.append(entry['fadvlr_count'])
         fsdvlr_series_data.append(entry['fsdvlr_count'])
+        distancia_series_data.append(entry['distancia_count'])
 
     # categories = Freight.objects.select_related('caminhao'=categories)
-
-    print(categories)
 
     data = {
         'chart': {'type': 'column'},
@@ -57,6 +57,10 @@ def dashboard(request):
             {
                 'name': 'Saldo',
                 'data': [float(saldo) for saldo in fsdvlr_series_data],
+            },
+            {
+                'name': 'KMs_Rodado',
+                'data': [float(kms) for kms in distancia_series_data],
             },
         ],
     }

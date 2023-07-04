@@ -22,6 +22,7 @@ class Freight(models.Model):
     km_origem = models.IntegerField(default=0)
     destino = models.CharField(max_length=30, verbose_name='Destino')
     km_destino = models.IntegerField(default=0)
+    distancia = models.IntegerField(default=0, blank=True)
     pedagio_pgto = models.CharField(
         max_length=2,
         choices=choices_pedagio,

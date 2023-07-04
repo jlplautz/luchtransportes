@@ -11,5 +11,6 @@ class FreightAdmin(admin.ModelAdmin):
         'motorista',
         'origem',
         'destino',
+        'distancia',
     )
     search_fields = ('data',)

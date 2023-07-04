@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Truck
+from .models import Truck, TruckFlue
 
 
 @admin.register(Truck)
@@ -15,16 +15,13 @@ class TruckAdmin(admin.ModelAdmin):
     search_fields = ('marca',)
 
 
-# @admin.register(TruckFees)
-# class TruckFeesAdmin(admin.ModelAdmin):
-#     list_display = (
-#         'contrato',
-#         'cod_operacao',
-#         'data',
-#         'caminhao',
-#         'valor_adiant_fixo',
-#         'valor_saldo_fixo',
-#         'valor_desc_fixo',
-#         'status_fixo',
-#     )
-#     search_fields = ('caminhao',)
+@admin.register(TruckFlue)
+class TruckFlueAdmin(admin.ModelAdmin):
+    list_display = (
+        'caminhao',
+        'data',
+        'flue_valor',
+        'km_atual',
+        'litros',
+    )
+    search_fields = ('caminhao',)

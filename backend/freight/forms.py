@@ -18,6 +18,7 @@ class CustomFreightForm(forms.ModelForm):
             'km_origem',
             'destino',
             'km_destino',
+            'distancia',
             'pedagio_pgto',
             'pedagio_valor',
             'frete_adiant_valor',

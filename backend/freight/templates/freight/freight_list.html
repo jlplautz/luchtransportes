@@ -40,19 +40,20 @@
                   <div>Cod.Oper</div>
                 </th>
                 <th scope="col" class="p-1 text-left text-sm font-medium text-gray-900 uppercase">
-                  <div>Data</div>
+                  <div>Caminhão</div>
+                  <div>Motorista</div>
                 </th>
                 <th scope="col" class="p-1 text-left text-sm font-medium text-gray-900 uppercase">
-                  <div>Caminhão</div>
-                  Motorista</div>
+                  <div>Data</div>
+                  <div>Distância</div>
                 </th>
                 <th scope="col" class="p-1 text-left text-sm font-medium text-gray-900 uppercase">
                   <div>Origem</div>
-                  <div>Km</div>
+                  <div>km_origem</div>
                 </th>
                 <th scope="col" class="p-1 text-left text-sm font-medium text-gray-900 uppercase">
                   <div>Destino</div>
-                 <div> Km</div>
+                  <div> km_destino</div>
                 </th>
                 <th scope="col" class="p-1 text-left text-sm font-medium text-gray-900 uppercase">
                   <div>Pedágio_Pgto</div>
@@ -76,18 +77,20 @@
                     <div>{{ object.cod_operacao|default:"---" }}</div>
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
-                    {{ object.data|date:"d/m/Y"|default:"---" }}</td>
-                  <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
                     <div>{{ object.caminhao    |default:"---" }}</div>
                     <div>{{ object.motorista   |default:"---" }}</div>
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
+                    <div>{{ object.data|date:"d/m/Y"|default:"---" }}</div>
+                    <div>{{ object.distancia   |default:"0" }}</div>
+                  </td>
+                  <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
                     <div>{{ object.origem|default:"---" }}</div>
-                    <div>{{ object.Km_origem|default:"---" }}</div>
+                    <div>{{ object.km_origem|default:"---" }}</div>
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
                     <div>{{ object.destino|default:"---" }}</div>
-                    <div>{{ object.Km_destino|default:"---" }}</div>
+                    <div>{{ object.km_destino|default:"---" }}</div>
                   </td>
                   <td class="p-3 whitespace-nowrap text-sm font-normal text-gray-500">
                     <div>{{ object.pedagio_pgto|default:"---" }}</div>

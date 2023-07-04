@@ -27,3 +27,11 @@ by('caminhao')
 <QuerySet [{'caminhao': 2, 'fadvlr_count': Decimal('32690.7200000000'), 'fsdvlr_count': Decimal('8830.08000000000')}, {'caminhao': 1, 'fadvlr_count': Decimal('18471.2200000000'), 'fsdvlr_count': Decimal('4579.58000000000')}]>
 
 https://docs.python.org/3/library/decimal.html?highlight=decimal#decimal.Decimal
+
+<QuerySet [
+    {'caminhao': 1, 'fadvlr_count': Decimal('18471.2200000000'), 'fsdvlr_count': Decimal('4579.58000000000')}, 
+    {'caminhao': 2, 'fadvlr_count': Decimal('33390.7200000000'), 'fsdvlr_count': Decimal('9130.data__month=508000000000')}, {'caminhao': 3, 'fadvlr_count': Decimal('24381.6000000000'), 'fsdvlr_count': Decimal('8126.40000000000')}, {'caminhao': 5, 'fadvlr_count': Decimal('33110.2200000000'), 'fsdvlr_count': Decimal('9088.78000000000')}, 
+    {'caminhao': 6, 'fadvlr_count': Decimal('3731.84000000000'), 'fsdvlr_count': Decimal('1999.36000000000')}]>
+>>> Freight.objects.filter(data__month=5).aggregate(Sum("frete_saldo_valor"))
+
+

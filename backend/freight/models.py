@@ -69,3 +69,54 @@ class Freight(models.Model):
     @property
     def verbose_name_plural(self):
         return self._meta.verbose_name_plural
+
+
+class FreightFee(models.Model):
+    choices_fixo = (('PG', 'Pago'), ('FS', 'Falta_Saldo'))
+    contrato = models.CharField(max_length=15)
+    cod_operacao = models.CharField(max_length=15)
+    data = models.DateField()
+    caminhao = models.ForeignKey(
+        Truck,
+        related_name='freightfees',
+        verbose_name='caminhao',
+        on_delete=models.DO_NOTHING,
+    )
+    valor_adiant_fixo = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
+    )
+    valor_saldo_fixo = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
+    )
+    valor_desc_fixo = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
+        blank=True,
+    )
+    frete_status = models.CharField(
+        max_length=2,
+        choices=choices_fixo,
+        default='FS',
+        blank=True,
+    )
+
+    class Meta:
+        ordering = ('data',)
+        verbose_name = 'freightfee'
+        verbose_name_plural = 'freightfees'
+
+    def __str__(self):
+        return self.caminhao
+
+    def list_url(self):
+        return reverse_lazy('freightfee:freightfee_list')
+
+    @property
+    def verbose_name(self):
+        return self._meta.verbose_name
+
+    @property
+    def verbose_name_plural(self):
+        return self._meta.verbose_name_plural

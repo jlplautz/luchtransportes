@@ -1,3 +1,5 @@
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CustomTruckForm, TruckFlueForm
@@ -7,25 +9,70 @@ from .models import Truck, TruckFlue
 def truck_list(request):
     template_name = 'truck/truck_list.html'
     object_list = Truck.objects.all()
-    context = {'object_list': object_list}
+    # context = {'object_list': object_list}
+
+    search = request.GET.get('search')
+
+    if search:
+        object_list = object_list.filter(
+            Q(placa__icontains=search)
+            | Q(marca__icontains=search)
+            | Q(modelo__icontains=search)
+            | Q(Chassis__icontains=search)
+        )
+
+    items_per_page = 10
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'items_count': page_obj.object_list.count(),
+    }
+
     return render(request, template_name, context)
 
 
 def truckflue_list(request):
     template_name = 'truck/truckflue_list.html'
     object_list = TruckFlue.objects.all()
-    context = {'object_list': object_list}
+    # context = {'object_list': object_list}
+
+    search = request.GET.get('search')
+    print(search)
+    if search:
+        object_list = object_list.filter(
+            Q(caminhao__placa__icontains=search)
+            | Q(data__icontains=search)
+            | Q(litros__icontains=search)
+            | Q(flue_valor__icontains=search)
+        )
+
+    items_per_page = 10
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'items_count': page_obj.object_list.count(),
+    }
+
     return render(request, template_name, context)
 
 
 def truck_create(request):
     template_name = 'truck/truck_form.html'
     form = CustomTruckForm(request.POST or None)
-    context = {'form': form}
 
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('truck:truck_list')
+
+    verbose_name_plural = form.instance._meta.verbose_name_plural
+
+    context = {'form': form, 'verbose_name_plural': verbose_name_plural}
 
     return render(request, template_name, context)
 
@@ -33,11 +80,14 @@ def truck_create(request):
 def truckflue_create(request):
     template_name = 'truck/truckflue_form.html'
     form = TruckFlueForm(request.POST or None)
-    context = {'form': form}
 
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('truck:truckflue_list')
+
+    verbose_name_plural = form.instance._meta.verbose_name_plural
+
+    context = {'form': form, 'verbose_name_plural': verbose_name_plural}
 
     return render(request, template_name, context)
 

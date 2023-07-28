@@ -15,8 +15,22 @@ class Driver(models.Model):
     estado = models.CharField(max_length=30, default='Paraná')
     cep = models.CharField(max_length=10, blank=True)
 
+    class Meta:
+        ordering = ('nome',)
+        verbose_name = 'Driver'
+        verbose_name_plural = 'Drivers'
+
     def __str__(self):
         return self.nome
 
     def get_absolute_url(self):
-        return reverse_lazy('driver:driver_detail', kwargs={'pk': self.pk})
+        # return reverse_lazy('driver:driver_detail', kwargs={'pk': self.pk})
+        return reverse_lazy('driver:driver_list')
+
+    @property
+    def verbose_name(self):
+        return self._meta.verbose_name
+
+    @property
+    def verbose_name_plural(self):
+        return self._meta.verbose_name_plural

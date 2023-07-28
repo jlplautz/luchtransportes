@@ -57,9 +57,9 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              {% for object in object_list %}
+              {% for object in page_obj %}
                   <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.caminhao }}</div>
-                  <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.data|default:"---" }}</td>
+                  <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.data|date:"d/m/Y"|default:"---" }}</td>
                   <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.flue_valor|default:"---" }}</td>
                   <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.litros|default:"---" }}</td>
                   <td class="p-1 whitespace-nowrap text-sm font-normal text-gray-500">{{ object.km_atual|default:"---" }}</td>
@@ -85,13 +85,17 @@
   <!-- START: footer of table -->
   <div class="bg-white sticky sm:flex items-center w-full sm:justify-between bottom-0 right-0 border-t border-gray-200 p-4">
     <div class="flex items-center mb-4 sm:mb-0">
-      <a href="#" class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center">
+      {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}" class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center">
         <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
       </a>
+      {% endif %}
+      {% if page_obj.has_next %}
       <a href="#" class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center mr-2">
         <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
       </a>
-      <span class="text-sm font-normal text-gray-500">Mostrando <span class="text-gray-900 font-semibold">1-20</span> de <span class="text-gray-900 font-semibold">2290</span></span>
+     {% endif %} 
+      <span class="text-sm font-normal text-gray-500">Mostrando <span class="text-gray-900 font-semibold">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span> Mostrando <span class="text-gray-900 font-semibold">{{ items_count }}</span> de <span class="text-gray-900 font-semibold">{{ page_obj.paginator.count }}</span> items </span>
     </div>
     {% include "core/includes/navigation_buttons.html" %}
   </div>

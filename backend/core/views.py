@@ -4,6 +4,7 @@ from django.db.models import Sum
 from django.shortcuts import render
 
 from backend.freight.models import Freight, FreightFee
+from backend.truck.models import TruckFlue
 
 
 def index(request):
@@ -17,6 +18,7 @@ def dashboard(request):
     # mostra o faturamento nos ultimos 12 meses
     frete = Freight.objects.all()
     fretefee = FreightFee.objects.all()
+    truckflue = TruckFlue.objects.all()
 
     meses = [
         'jan',
@@ -34,6 +36,7 @@ def dashboard(request):
     ]
     data = []
     datafee = []
+    dataflue = []
     labels = []
     cont = 0
     mes = datetime.now().month + 1
@@ -49,15 +52,7 @@ def dashboard(request):
 
         y = sum(
             [
-                i.frete_adiant_valor
-                for i in frete
-                if i.data.month == mes and i.data.year == ano
-            ]
-        )
-
-        y += sum(
-            [
-                i.frete_saldo_valor
+                i.frete_adiant_valor + i.frete_saldo_valor
                 for i in frete
                 if i.data.month == mes and i.data.year == ano
             ]
@@ -65,15 +60,16 @@ def dashboard(request):
 
         y1 = sum(
             [
-                i.valor_adiant_fixo
+                i.valor_adiant_fixo + i.valor_saldo_fixo
                 for i in fretefee
                 if i.data.month == mes and i.data.year == ano
             ]
         )
-        y1 += sum(
+
+        y2 = sum(
             [
-                i.valor_saldo_fixo
-                for i in fretefee
+                i.flue_valor
+                for i in truckflue
                 if i.data.month == mes and i.data.year == ano
             ]
         )
@@ -81,6 +77,7 @@ def dashboard(request):
         labels.append(meses[mes - 1])
         data.append(y)
         datafee.append(y1)
+        dataflue.append(y2)
         cont += 1
 
     fretetotal = {
@@ -89,8 +86,16 @@ def dashboard(request):
         'xAxis': {'categories': labels[::-1]},
         'series': [
             {
-                'name': 'Adiantamento + Saldo',
+                'name': 'Fretes',
                 'data': [float(total) for total in data[::-1]],
+            },
+            {
+                'name': 'Fretes Fixos',
+                'data': [float(total) for total in datafee[::-1]],
+            },
+            {
+                'name': 'Combustível',
+                'data': [float(total) for total in dataflue[::-1]],
             },
         ],
     }

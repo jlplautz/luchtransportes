@@ -110,8 +110,9 @@ class FreightFee(models.Model):
     def __str__(self):
         return self.caminhao
 
-    def list_url(self):
-        return reverse_lazy('freightfee:freightfee_list')
+    # cuidado se liberar da falha 'freightfee' is not a registered namespace
+    # def list_url(self):
+    #     return reverse_lazy('freightfee:freightfee_list')
 
     @property
     def verbose_name(self):

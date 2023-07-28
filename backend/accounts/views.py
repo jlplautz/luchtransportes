@@ -1,9 +1,12 @@
 # accounts/views.py
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import (
     PasswordResetCompleteView,
     PasswordResetConfirmView,
 )
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CustomUserForm
@@ -54,7 +57,27 @@ class MyPasswordResetComplete(PasswordResetCompleteView):
 def user_list(request):
     template_name = 'accounts/user_list.html'
     object_list = User.objects.exclude(email='admin@email.com')
-    context = {'object_list': object_list}
+    # context = {'object_list': object_list}
+
+    search = request.GET.get('search')
+
+    if search:
+        print(search)
+        object_list = object_list.filter(
+            Q(email__icontains=search)
+            | Q(first_name__icontains=search)
+            | Q(last_name__icontains=search)
+        )
+
+    items_per_page = 10
+    paginator = Paginator(object_list, items_per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'items_count': page_obj.object_list.count(),
+    }
     return render(request, template_name, context)
 
 

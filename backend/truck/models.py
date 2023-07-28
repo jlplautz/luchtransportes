@@ -14,14 +14,22 @@ class Truck(models.Model):
 
     class Meta:
         ordering = ('placa',)
-        verbose_name = 'truck'
-        verbose_name_plural = 'trucks'
+        verbose_name = 'Truck'
+        verbose_name_plural = 'Trucks'
+
+    @property
+    def verbose_name(self):
+        return self._meta.verbose_name
+
+    @property
+    def verbose_name_plural(self):
+        return self._meta.verbose_name_plural
 
 
 class TruckFlue(models.Model):
     caminhao = models.ForeignKey(
         Truck,
-        related_name='truck',
+        related_name='truckflues',
         verbose_name='caminhao',
         on_delete=models.DO_NOTHING,
     )
@@ -38,5 +46,13 @@ class TruckFlue(models.Model):
 
     class Meta:
         ordering = ('data',)
-        verbose_name = 'truckflue'
-        verbose_name_plural = 'truckflues'
+        verbose_name = 'TruckFlue'
+        verbose_name_plural = 'TruckFlues'
+
+    @property
+    def verbose_name(self):
+        return self._meta.verbose_name
+
+    @property
+    def verbose_name_plural(self):
+        return self._meta.verbose_name_plural

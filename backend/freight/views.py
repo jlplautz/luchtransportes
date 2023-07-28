@@ -43,11 +43,11 @@ def freight_list(request):
 def freightfee_list(request):
     template_name = 'freight/freightfee_list.html'
     object_list = FreightFee.objects.all()
+    # context = {'object_list': object_list}
 
     search = request.GET.get('search')
 
     if search:
-        print(search)
         object_list = object_list.filter(
             Q(data__icontains=search)
             | Q(caminhao__placa__icontains=search)
@@ -85,15 +85,14 @@ def freight_create(request):
 def freightfee_create(request):
     template_name = 'freight/freightfee_form.html'
     form = FreightFeeForm(request.POST or None)
-    context = {'form': form}
 
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('freight:freightfee_list')
 
-    # verbose_name_plural = form.instance._meta.verbose_name_plural
+    verbose_name_plural = form.instance._meta.verbose_name_plural
 
-    # context = {'form': form, 'verbose_name_plural': verbose_name_plural}
+    context = {'form': form, 'verbose_name_plural': verbose_name_plural}
 
     return render(request, template_name, context)
 

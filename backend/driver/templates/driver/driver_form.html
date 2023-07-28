@@ -6,6 +6,7 @@
   <div class="mx-auto md:h-screen flex flex-col px-6 pt-8 pt:mt-0">
     <!-- Card -->
     <div class="bg-white shadow rounded-lg md:mt-0 w-full sm:max-w-screen-sm xl:p-0">
+      {% include "core/includes/breadcrumb.html" %}
       <div class="p-6 sm:p-8 lg:p-16 space-y-8">
         <h2 class="text-2xl lg:text-3xl font-bold text-gray-900">
           {% if object.pk %}
@@ -13,7 +14,7 @@
           {% else %}
             Adicionar
           {% endif %}
-          Motorista
+            Motorista
         </h2>
 
         {% if form.errors %}

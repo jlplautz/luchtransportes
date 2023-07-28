@@ -68,3 +68,6 @@ Decimal('16600')
 >>> Freight.objects.values('caminhao').filter(data__month=6).aggregate(Sum('frete_saldo_valor'))
 {'frete_saldo_valor__sum': Decimal('34978.8200000000')}
 
+links para verificar
+https://simpleisbetterthancomplex.com/tutorial/2016/12/06/how-to-create-group-by-queries.html
+https://beta.ruff.rs/docs/rules/#pep8-naming-n

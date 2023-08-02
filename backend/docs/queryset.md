@@ -71,3 +71,68 @@ Decimal('16600')
 links para verificar
 https://simpleisbetterthancomplex.com/tutorial/2016/12/06/how-to-create-group-by-queries.html
 https://beta.ruff.rs/docs/rules/#pep8-naming-n
+
+
+Comunidade 31/07/23
+
+** ver este setup
+AUTH_USER_MODEL = 'base.User', um apenas
+
+https://simpleisbetterthancomplex.com/tutorial/2018/01/18/how-to-implement-multiple-user-types-with-django.html
+
+
+https://docs.djangoproject.com/en/4.2/topics/db/fixtures/
+
+## Verificar instruçoes para o ngnix entender o protocolo usado no acesso
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+## Problema do Luciano
+https://leetcode.com/problems/3sum/
+
+input_list = [2,8,12,15]
+target = 20
+
+https://leetcode.com/problems/two-sum/
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+
+busca binaria lib bicsec já implementa
+
+
+
+## Como fazer o back no SQLITE3
+
+### no settings.py é necesario deixar a configuração do SQLITE 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+### executar o coamndo 
+(luchtransportes-py3.11) ╭─plautz@ProBook-6470b ~/VSCProjects/luchtransportes ‹issue-23●› 
+╰─$ python manage.py dumpdata > data.json  -> arquivo data.json é criado formato UTF-8
+
+### depois alterar no setting a configuração 
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default': config(
+        'DATABASE_URL',
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        cast=db_url
+    )
+}
+
+### Para fazer o load do file data.json no POSTGRES
+Entrar no terminar do container da aplicação e executar
+1- python manage.py shell
+2- from django.contrib.contenttypes.models import ContentType
+3- ContentType.objects.all().delete() -> não pode ter nenhum registro gravado
+4- exit()
+python manage.py loaddata data.json

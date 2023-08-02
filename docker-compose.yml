@@ -1,0 +1,37 @@
+services:
+
+  backend:
+    build: .
+    image: lucht_app
+    env_file: .env
+    depends_on:
+      - postgres
+    command: wait-for-it postgres:5432 -- python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/.postgres/todo_db/data/postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DBS=lucht-db
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+
+    # healthcheck:
+    #   test: pg_isready -U postgres
+    #   interval: 2s
+    #   timeout: 10s
+    #   retries: 5
+    #   start_period: 3s
+
+volumes:
+  postgres:

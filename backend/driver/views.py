@@ -14,7 +14,6 @@ def driver_list(request):
     search = request.GET.get('search')
 
     if search:
-        print(search)
         object_list = object_list.filter(
             Q(nome__icontains=search)
             | Q(email__icontains=search)
@@ -43,7 +42,7 @@ def driver_create(request):
 
     if request.method == 'POST' and form.is_valid():
         form.save()
-        return redirect('drive:drive_list')
+        return redirect('driver:driver_list')
 
     verbose_name_plural = form.instance._meta.verbose_name_plural
 

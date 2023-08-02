@@ -26,6 +26,7 @@ def freight_list(request):
             | Q(frete_saldo_valor__icontains=search)
             | Q(origem__icontains=search)
             | Q(destino__icontains=search)
+            | Q(data__icontains=search)
         )
 
     items_per_page = 10

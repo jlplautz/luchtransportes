@@ -40,7 +40,6 @@ def truckflue_list(request):
     # context = {'object_list': object_list}
 
     search = request.GET.get('search')
-    print(search)
     if search:
         object_list = object_list.filter(
             Q(caminhao__placa__icontains=search)

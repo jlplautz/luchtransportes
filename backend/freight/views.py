@@ -27,6 +27,8 @@ def freight_list(request):
             | Q(origem__icontains=search)
             | Q(destino__icontains=search)
             | Q(data__icontains=search)
+            | Q(cod_operacao__icontains=search)
+            | Q(contrato__icontains=search)
         )
 
     items_per_page = 10

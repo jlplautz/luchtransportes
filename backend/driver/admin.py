@@ -10,6 +10,6 @@ class FreightAdmin(admin.ModelAdmin):
         'cnh',
         'data_nasc',
         'telefone',
-        'nome',
+        'motorista',
     )
-    search_fields = ('nome',)
+    search_fields = ('motorista',)

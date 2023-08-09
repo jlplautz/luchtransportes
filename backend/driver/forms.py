@@ -9,7 +9,7 @@ class CustomDriverForm(forms.ModelForm):
     class Meta:
         model = Driver
         fields = (
-            'nome',
+            'motorista',
             'cpf',
             'cnh',
             'data_nasc',

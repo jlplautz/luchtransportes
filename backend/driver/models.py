@@ -1,10 +1,18 @@
 from django.db import models
 from django.urls import reverse_lazy
 
+from backend.accounts.models import User
+
 
 class Driver(models.Model):
-    nome = models.CharField(max_length=30)
-    email = models.CharField(max_length=20, blank=True)
+    motorista = models.OneToOneField(
+        User,
+        related_name='drivers',
+        verbose_name='motorista',
+        on_delete=models.DO_NOTHING,
+        max_length=3,
+        null=True,
+    )
     cpf = models.CharField(max_length=11)
     cnh = models.CharField(max_length=11)
     data_nasc = models.DateField()
@@ -16,12 +24,12 @@ class Driver(models.Model):
     cep = models.CharField(max_length=10, blank=True)
 
     class Meta:
-        ordering = ('nome',)
-        verbose_name = 'Driver'
-        verbose_name_plural = 'Drivers'
+        ordering = ('motorista',)
+        verbose_name = 'driver'
+        verbose_name_plural = 'drivers'
 
     def __str__(self):
-        return self.nome
+        return self.motorista.first_name
 
     def get_absolute_url(self):
         # return reverse_lazy('driver:driver_detail', kwargs={'pk': self.pk})

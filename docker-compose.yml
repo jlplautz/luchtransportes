@@ -21,7 +21,7 @@ services:
     environment:
       - POSTGRES_DBS=lucht-db
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgresp
+      - POSTGRES_USER=postgres
 
     # healthcheck:
     #   test: pg_isready -U postgres

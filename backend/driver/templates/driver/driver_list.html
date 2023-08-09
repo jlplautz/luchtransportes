@@ -57,7 +57,7 @@
             <tbody class="bg-white divide-y divide-gray-200">
               {% for object in page_obj %}
                 <tr class="hover:bg-gray-100">
-                  <td class="p-1 whitespace-nowrap text-left text-sm font-normal text-gray-700">{{ object.nome|default:"---" }}</td>
+                  <td class="p-1 whitespace-nowrap text-left text-sm font-normal text-gray-700">{{ object.motorista|default:"---" }}</td>
                   <td class="p-1 whitespace-nowrap text-left text-sm font-normal text-gray-700">{{ object.cpf|default:"---" }}</td>
                   <td class="p-1 whitespace-nowrap text-left text-sm font-normal text-gray-700">{{ object.cnh|default:"---" }}</td>
                   <td class="p-1 whitespace-nowrap text-left text-sm font-normal text-gray-700">{{ object.data_nasc|date:"d/m/Y"|default:"---" }}</td>

@@ -23,5 +23,6 @@ class TruckFlueAdmin(admin.ModelAdmin):
         'flue_valor',
         'km_atual',
         'litros',
+        'descricao',
     )
     search_fields = ('caminhao',)

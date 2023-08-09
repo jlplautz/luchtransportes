@@ -10,8 +10,7 @@
 >>> Freight.objects.aggregate(Sum("frete_saldo_valor"))
 {'frete_saldo_valor__sum': Decimal('13409.6600000000')}
 
->>> Freight.objects.filter(caminhao__placa__icontains='M').aggregate(Sum("frete_adiant_valor"))
-{'frete_adiant_valor__sum': Decimal('18471.2200000000')}
+>>> clear{'frete_adiant_valor__sum': Decimal('18471.2200000000')}
 
 >>> Freight.objects.filter(caminhao__placa__icontains='M').aggregate(Sum("frete_saldo_valor"))
 {'frete_saldo_valor__sum': Decimal('4579.58000000000')}
@@ -67,6 +66,18 @@ Decimal('16600')
 {'frete_adiant_valor__sum': Decimal('79191.4600000000')}
 >>> Freight.objects.values('caminhao').filter(data__month=6).aggregate(Sum('frete_saldo_valor'))
 {'frete_saldo_valor__sum': Decimal('34978.8200000000')}
+
+
+>>> Freight.objects.filter(caminhao__placa__icontains='awp').filter(data__month=7).aggregate(Sum("frete_saldo_valor"))
+{'frete_saldo_valor__sum': Decimal('4808.44')}
+>>> Freight.objects.filter(caminhao__placa__icontains='awp').filter(data__month=7).aggregate(Sum("frete_adiant_valor"))
+{'frete_adiant_valor__sum': Decimal('20785.91')}
+>>> TruckFlue.objects.filter(caminhao__placa__icontains='awp').filter(data__month=7).aggregate(Sum("flue_valor"))
+{'flue_valor__sum': Decimal('17535.80')}
+>>> 
+
+
+
 
 links para verificar
 https://simpleisbetterthancomplex.com/tutorial/2016/12/06/how-to-create-group-by-queries.html

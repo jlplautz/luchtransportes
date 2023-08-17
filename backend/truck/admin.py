@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Truck, TruckFlue
+from .models import Truck, TruckFlue, TruckRepair
 
 
 @admin.register(Truck)
@@ -24,5 +24,17 @@ class TruckFlueAdmin(admin.ModelAdmin):
         'km_atual',
         'litros',
         'descricao',
+    )
+    search_fields = ('caminhao',)
+
+
+@admin.register(TruckRepair)
+class TruckRepairAdmin(admin.ModelAdmin):
+    list_display = (
+        'caminhao',
+        'data',
+        'repair_valor',
+        'descricao',
+        'cidade',
     )
     search_fields = ('caminhao',)

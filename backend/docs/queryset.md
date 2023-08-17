@@ -76,7 +76,19 @@ Decimal('16600')
 {'flue_valor__sum': Decimal('17535.80')}
 >>> 
 
+>>> TruckFlue.objects.values('caminhao__placa').filter(data__month=7).annotate(Valor_Total=Sum('flue_valor')).order_by('-caminhao__placa')
+<QuerySet [{'caminhao__placa': 'IUD0B73', 'Valor_Total': Decimal('3960.60')}, {'caminhao__placa': 'AWP8J53', 'Valor_Total': Decimal('17660.11')}, {'caminhao__placa': 'ASP6I28', 'Valor_Total': Decimal('2167.88')}]>
 
+
+>>> TruckFlue.objects.values('caminhao__placa').filter(data__month=7).annotate(Valor_Total=Sum('flue_valor')).order_by('-caminhao__placa')
+<QuerySet [{'caminhao__placa': 'IUD0B73', 'Valor_Total': Decimal('3960.60')}, {'caminhao__placa': 'AWP8J53', 'Valor_Total': Decimal('17660.11')}, {'caminhao__placa': 'ASP6I28', 'Valor_Total': Decimal('2167.88')}]
+
+>>> TruckFlue.objects.values('caminhao__placa').filter(data__month=6).annotate(Valor_Total=Sum('flue_valor')).order_by(
+'-caminhao__placa')
+<QuerySet [{'caminhao__placa': 'MVY2C20', 'Valor_Total': Decimal('928.00')}, {'caminhao__placa': 'KVK8331', 'Valor_Total': Decimal('7266.50')}, {'caminhao__placa': 'IUD0B73', 'Valor_Total': Decimal('5742.18')}, {'caminhao__placa': 'AWP8J53', 'Valor_Total': Decimal('2433.15')}]>
+
+
+TruckFlue.objects.values('caminhao__placa').annotate(Valor_Total=Sum('flue_valor'))
 
 
 links para verificar

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Truck, TruckFlue
+from .models import Truck, TruckFlue, TruckRepair
 
 
 class CustomTruckForm(forms.ModelForm):
@@ -35,4 +35,18 @@ class TruckFlueForm(forms.ModelForm):
             'km_atual',
             'litros',
             'descricao',
+        )
+
+
+class TruckRepairForm(forms.ModelForm):
+    required_css_class = 'required'
+
+    class Meta:
+        model = TruckRepair
+        fields = (
+            'caminhao',
+            'data',
+            'repair_valor',
+            'descricao',
+            'cidade',
         )

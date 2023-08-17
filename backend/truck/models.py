@@ -57,3 +57,35 @@ class TruckFlue(models.Model):
     @property
     def verbose_name_plural(self):
         return self._meta.verbose_name_plural
+
+
+class TruckRepair(models.Model):
+    caminhao = models.ForeignKey(
+        Truck,
+        related_name='truckrepairs',
+        verbose_name='caminhao',
+        on_delete=models.DO_NOTHING,
+    )
+    data = models.DateField()
+    repair_valor = models.DecimalField(
+        max_digits=7,
+        decimal_places=2,
+    )
+    descricao = models.CharField(max_length=100)
+    cidade = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.caminhao)
+
+    class Meta:
+        ordering = ('data',)
+        verbose_name = 'truckrepair'
+        verbose_name_plural = 'truckrepairs'
+
+    @property
+    def verbose_name(self):
+        return self._meta.verbose_name
+
+    @property
+    def verbose_name_plural(self):
+        return self._meta.verbose_name_plural

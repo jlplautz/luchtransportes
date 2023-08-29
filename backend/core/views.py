@@ -82,7 +82,7 @@ def dashboard(request):
 
     fretetotal = {
         'chart': {'type': 'column'},
-        'title': {'text': 'Fretes - Total'},
+        'title': {'text': 'FRETES - TOTAL'},
         'xAxis': {'categories': labels[::-1]},
         'series': [
             {
@@ -102,7 +102,7 @@ def dashboard(request):
 
     fretefeetotal = {
         'chart': {'type': 'column'},
-        'title': {'text': 'Fretes Fixos - Total'},
+        'title': {'text': 'FRETES FIXOS - TOTAL'},
         'xAxis': {'categories': labels[::-1]},
         'series': [
             {
@@ -158,7 +158,7 @@ def dashboard(request):
 
     data = {
         'chart': {'type': 'column'},
-        'title': {'text': 'FRETES DE MAIO/23'},
+        'title': {'text': 'FRETES - MAIO/23'},
         'xAxis': {'categories': categories},
         # 'xAxis': {'categories':  labels[::-1]},
         'series': [
@@ -181,7 +181,7 @@ def dashboard(request):
 
     datafixo = {
         'chart': {'type': 'column'},
-        'title': {'text': 'FRETES-FIXO DE MAIO/23'},
+        'title': {'text': 'FRETES-FIXO - MAIO/23'},
         'xAxis': {'categories': categories},
         'series': [
             {
@@ -202,12 +202,291 @@ def dashboard(request):
         ],
     }
 
+    # ********************************************************************
+
+    datasetJun23 = (
+        frete.values('caminhao__placa')
+        .filter(data__month=6)  # lockup
+        .annotate(
+            fadvlrJun23_count=Sum('frete_adiant_valor'),
+            fsdvlrJun23_count=Sum('frete_saldo_valor'),
+            distanciaJun23_count=Sum('distancia'),
+        )
+        .order_by('caminhao')
+    )
+
+    datasetfixoJun23 = (
+        fretefee.values('caminhao__placa')  # lockup
+        .filter(data__month=6)
+        .annotate(
+            adiantfixoJun23_count=Sum('valor_adiant_fixo'),
+            saldofixoJun23_count=Sum('valor_saldo_fixo'),
+            descfixoJun23_count=Sum('valor_desc_fixo'),
+        )
+        .order_by('caminhao')
+    )
+
+    categories = list()
+    fadvlrJun23_series_data = list()
+    fsdvlrJun23_series_data = list()
+    distanciaJun23_series_data = list()
+    adiantfixoJun23_series_data = list()
+    saldofixoJun23_series_data = list()
+    descfixoJun23_series_data = list()
+
+    for entry in datasetJun23:
+        categories.append(entry['caminhao__placa'])
+        fadvlrJun23_series_data.append(entry['fadvlrJun23_count'])
+        fsdvlrJun23_series_data.append(entry['fsdvlrJun23_count'])
+        distanciaJun23_series_data.append(entry['distanciaJun23_count'])
+
+    for entry in datasetfixoJun23:
+        categories.append(entry['caminhao__placa'])
+        adiantfixoJun23_series_data.append(entry['adiantfixoJun23_count'])
+        saldofixoJun23_series_data.append(entry['saldofixoJun23_count'])
+        descfixoJun23_series_data.append(entry['descfixoJun23_count'])
+
+    dataJun23 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES - JUNHO/23'},
+        'xAxis': {'categories': categories},
+        # 'xAxis': {'categories':  labels[::-1]},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in fadvlrJun23_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in fsdvlrJun23_series_data],
+            },
+            {
+                'name': 'KMs_Rodado',
+                'data': [float(kms) for kms in distanciaJun23_series_data],
+            },
+        ],
+    }
+
+    datafixoJun23 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES-FIXO - JUNHO/23'},
+        'xAxis': {'categories': categories},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in adiantfixoJun23_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in saldofixoJun23_series_data],
+            },
+            {
+                'name': 'Desconto',
+                'data': [float(desc) for desc in descfixoJun23_series_data],
+            },
+        ],
+    }
+
+    # Jul23****************************************************************
+
+    datasetJul23 = (
+        frete.values('caminhao__placa')
+        .filter(data__month=7)  # lockup
+        .annotate(
+            fadvlrJul23_count=Sum('frete_adiant_valor'),
+            fsdvlrJul23_count=Sum('frete_saldo_valor'),
+            distanciaJul23_count=Sum('distancia'),
+        )
+        .order_by('caminhao')
+    )
+
+    datasetfixoJul23 = (
+        fretefee.values('caminhao__placa')  # lockup
+        .filter(data__month=7)
+        .annotate(
+            adiantfixoJul23_count=Sum('valor_adiant_fixo'),
+            saldofixoJul23_count=Sum('valor_saldo_fixo'),
+            descfixoJul23_count=Sum('valor_desc_fixo'),
+        )
+        .order_by('caminhao')
+    )
+
+    categories = list()
+    fadvlrJul23_series_data = list()
+    fsdvlrJul23_series_data = list()
+    distanciaJul23_series_data = list()
+    adiantfixoJul23_series_data = list()
+    saldofixoJul23_series_data = list()
+    descfixoJul23_series_data = list()
+
+    for entry in datasetJul23:
+        categories.append(entry['caminhao__placa'])
+        fadvlrJul23_series_data.append(entry['fadvlrJul23_count'])
+        fsdvlrJul23_series_data.append(entry['fsdvlrJul23_count'])
+        distanciaJul23_series_data.append(entry['distanciaJul23_count'])
+
+    for entry in datasetfixoJul23:
+        categories.append(entry['caminhao__placa'])
+        adiantfixoJul23_series_data.append(entry['adiantfixoJul23_count'])
+        saldofixoJul23_series_data.append(entry['saldofixoJul23_count'])
+        descfixoJul23_series_data.append(entry['descfixoJul23_count'])
+
+    dataJul23 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES - JULHO/23'},
+        'xAxis': {'categories': categories},
+        # 'xAxis': {'categories':  labels[::-1]},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in fadvlrJul23_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in fsdvlrJul23_series_data],
+            },
+            {
+                'name': 'KMs_Rodado',
+                'data': [float(kms) for kms in distanciaJul23_series_data],
+            },
+        ],
+    }
+
+    datafixoJul23 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES-FIXO - JULHO/23'},
+        'xAxis': {'categories': categories},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in adiantfixoJul23_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in saldofixoJul23_series_data],
+            },
+            {
+                'name': 'Desconto',
+                'data': [float(desc) for desc in descfixoJul23_series_data],
+            },
+        ],
+    }
+
+    # Ago23*******************************************************************
+
+    datasetAgo23 = (
+        frete.values('caminhao__placa')
+        .filter(data__month=8)  # lockup
+        .annotate(
+            fadvlrAgo23_count=Sum('frete_adiant_valor'),
+            fsdvlrAgo23_count=Sum('frete_saldo_valor'),
+            distanciaAgo23_count=Sum('distancia'),
+        )
+        .order_by('caminhao')
+    )
+
+    datasetfixoAgo23 = (
+        fretefee.values('caminhao__placa')  # lockup
+        .filter(data__month=8)
+        .annotate(
+            adiantfixoAgo23_count=Sum('valor_adiant_fixo'),
+            saldofixoAgo23_count=Sum('valor_saldo_fixo'),
+            descfixoAgo23_count=Sum('valor_desc_fixo'),
+        )
+        .order_by('caminhao')
+    )
+
+    categories = list()
+    fadvlrAgo23_series_data = list()
+    fsdvlrAgo23_series_data = list()
+    distanciaAgo23_series_data = list()
+    adiantfixoAgo23_series_data = list()
+    saldofixoAgo23_series_data = list()
+    descfixoAgo23_series_data = list()
+
+    for entry in datasetAgo23:
+        categories.append(entry['caminhao__placa'])
+        fadvlrAgo23_series_data.append(entry['fadvlrAgo23_count'])
+        fsdvlrAgo23_series_data.append(entry['fsdvlrAgo23_count'])
+        distanciaAgo23_series_data.append(entry['distanciaAgo23_count'])
+
+    for entry in datasetfixoAgo23:
+        categories.append(entry['caminhao__placa'])
+        adiantfixoAgo23_series_data.append(entry['adiantfixoAgo23_count'])
+        saldofixoAgo23_series_data.append(entry['saldofixoAgo23_count'])
+        descfixoAgo23_series_data.append(entry['descfixoAgo23_count'])
+
+    dataAgo23 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES - Agosto/23'},
+        'xAxis': {'categories': categories},
+        # 'xAxis': {'categories':  labels[::-1]},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in fadvlrAgo23_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in fsdvlrAgo23_series_data],
+            },
+            {
+                'name': 'KMs_Rodado',
+                'data': [float(kms) for kms in distanciaAgo23_series_data],
+            },
+        ],
+    }
+
+    datafixoAgo23 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES-FIXO - Agosto/23'},
+        'xAxis': {'categories': categories},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in adiantfixoAgo23_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in saldofixoAgo23_series_data],
+            },
+            {
+                'name': 'Desconto',
+                'data': [float(desc) for desc in descfixoAgo23_series_data],
+            },
+        ],
+    }
+
     return render(
         request,
         template_name,
         {
             'data': data,
             'datafixo': datafixo,
+            'dataJun23': dataJun23,
+            'datafixoJun23': datafixoJun23,
+            'dataJul23': dataJul23,
+            'datafixoJul23': datafixoJul23,
+            'dataAgo23': dataAgo23,
+            'datafixoAgo23': datafixoAgo23,
             'fretetotal': fretetotal,
             'fretefeetotal': fretefeetotal,
         },

@@ -3,50 +3,89 @@
 
 {% block content %}
   <main>
-    <div class="pt-6 px-4">
-      {% comment %} <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4" {% endcomment %}
-        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-          <div class="flex items-center justify-between mb-4">
+    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-center mb-1">
           <div id="container"></div>
-            <script src="https://code.highcharts.com/highcharts.src.js"></script> 
-            <script>
-              Highcharts.chart('container', {{ data|safe }})
-            </script> 
-          </div>   
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container', {{ data|safe }})</script>  
         </div>   
-      {% comment %} </div> 
-      <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4" {% endcomment %}
-        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-          <div class="flex items-center justify-between mb-4">
+      </div>   
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-between mb-1">
           <div id="container2"></div>
-            <script src="https://code.highcharts.com/highcharts.src.js"></script> 
-            <script>
-              Highcharts.chart('container2', {{ datafixo|safe }}) 
-            </script> 
-          </div>   
-        </div>
-      <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4"
-        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-          <div class="flex items-center justify-between mb-4">
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container2', {{ datafixo|safe }})</script> 
+        </div>   
+      </div>
+    </div>
+    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-center mb-1">
           <div id="container3"></div>
-            <script src="https://code.highcharts.com/highcharts.src.js"></script> 
-            <script>
-              Highcharts.chart('container3', {{ fretetotal|safe }}) 
-            </script> 
-          </div>   
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container3', {{ dataJun23|safe }})</script>  
         </div>   
-      </div> 
-      <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4"
-        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-          <div class="flex items-center justify-between mb-4">
+      </div>   
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-between mb-1">
           <div id="container4"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container4', {{ datafixoJun23|safe }})</script> 
+        </div>   
+      </div>
+    </div>
+    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-center mb-1">
+          <div id="container5"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container5', {{ dataJul23|safe }})</script>  
+        </div>   
+      </div>   
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-between mb-1">
+          <div id="container6"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container6', {{ datafixoJul23|safe }})</script> 
+        </div>   
+      </div>
+    </div>
+    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-center mb-1">
+          <div id="container7"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container7', {{ dataAgo23|safe }})</script>  
+        </div>   
+      </div>   
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-between mb-1">
+          <div id="container8"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container8', {{ datafixoAgo23|safe }})</script> 
+        </div>   
+      </div>
+    </div>
+    <div class="bg-gray-100 flex justify-center pt-6 px-2">
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+          <div class="flex items-center justify-between mb-1">
+          <div id="container9"></div>
             <script src="https://code.highcharts.com/highcharts.src.js"></script> 
             <script>
-              Highcharts.chart('container4', {{ fretefeetotal|safe }}) 
+              Highcharts.chart('container9', {{ fretetotal|safe }}) 
             </script> 
           </div>   
         </div>   
-      </div>    
+        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+          <div class="flex items-center justify-between mb-1">
+          <div id="container10"></div>
+            <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+            <script>
+              Highcharts.chart('container10', {{ fretefeetotal|safe }}) 
+            </script> 
+          </div>   
+        </div>   
     </div>
   </main>
 {% endblock content %}

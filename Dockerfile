@@ -14,11 +14,13 @@ ENV	PATH="$PATH:$POETRY_HOME/bin"
 RUN pip install -U pip && pip install poetry
 RUN apt update -y  && apt install -y --no-install-recommends -y\
     build-essential libpq-dev wait-for-it && apt clean && rm -rf /var/lib/apt/lists/*
-# RUN curl -sSL https://install.python-poetry.org | python3 -
 
-COPY . .
+COPY pyproject.toml poetry.lock /app/
+
 
 RUN poetry install
+
+COPY . .
 
 EXPOSE 8000
 

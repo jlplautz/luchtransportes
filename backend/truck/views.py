@@ -46,6 +46,7 @@ def truckflue_list(request):
             | Q(data__icontains=search)
             | Q(litros__icontains=search)
             | Q(flue_valor__icontains=search)
+            | Q(cidade__icontains=search)
         )
 
     items_per_page = 10

@@ -187,6 +187,15 @@ python manage.py loaddata data.json
     {'caminhao__placa': 'ASP6I28', 'flue': Decimal('27879.59'), 'litros': 5517.363}]>
 >>> 
 
+>>> TruckFlue.objects.values('caminhao__placa').annotate(flue=Sum('flue_valor'), litros=Sum('litros'))
+<QuerySet [
+    {'caminhao__placa': 'MVY2C20', 'flue': Decimal('23768.95'), 'litros': 1714.4589999999998}, 
+    {'caminhao__placa': 'KVK8331', 'flue': Decimal('7362.37'), 'litros': 124291.406}, 
+    {'caminhao__placa': 'AWP8J53', 'flue': Decimal('23741.69'), 'litros': 753.8000000000001}, 
+    {'caminhao__placa': 'IUD0B73', 'flue': Decimal('36141.25'), 'litros': 7449.845000000002}, 
+    {'caminhao__placa': 'ASP6I28', 'flue': Decimal('13285.47'), 'litros': 2672.567}]>
+
+
 # ***********************************************
 Total Fretes 
 
@@ -243,3 +252,10 @@ Combustivel
 >>> TruckFlue.objects.values('caminhao__placa').filter(data__month=4).annotate(Valor_Total=Sum('flue_valor')).annotate(litros=Sum('litros'))
 <QuerySet [
     {'caminhao__placa': 'ASP6I28', 'Valor_Total': Decimal('7386.67'), 'litros': 1407.590}]>
+
+
+>>> TruckFlue.objects.values('caminhao__placa').filter(data__month=6).annotate(Valor_Total=Sum('flue_valor')).annotate(litros=Sum('litros'))
+<QuerySet [
+    {'caminhao__placa': 'AWP8J53', 'Valor_Total': Decimal('2433.15'), 'litros': 527.0880000000001}, 
+    {'caminhao__placa': 'IUD0B73', 'Valor_Total': Decimal('10512.70'), 'litros': 2574.0}, 
+    {'caminhao__placa': 'MVY2C20', 'Valor_Total': Decimal('4715.02'), 'litros': 0.0}]>

@@ -41,6 +41,7 @@ class TruckFlue(models.Model):
     km_atual = models.IntegerField(default=0)
     litros = models.FloatField(default=0)
     descricao = models.CharField(max_length=20, default='Diesel')
+    cidade = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return str(self.caminhao)

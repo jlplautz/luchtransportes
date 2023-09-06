@@ -35,6 +35,7 @@ class TruckFlueForm(forms.ModelForm):
             'km_atual',
             'litros',
             'descricao',
+            'cidade',
         )
 
 

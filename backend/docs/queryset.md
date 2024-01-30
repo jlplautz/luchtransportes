@@ -259,3 +259,5 @@ Combustivel
     {'caminhao__placa': 'AWP8J53', 'Valor_Total': Decimal('2433.15'), 'litros': 527.0880000000001}, 
     {'caminhao__placa': 'IUD0B73', 'Valor_Total': Decimal('10512.70'), 'litros': 2574.0}, 
     {'caminhao__placa': 'MVY2C20', 'Valor_Total': Decimal('4715.02'), 'litros': 0.0}]>
+
+https://github.com/corretaza/corretaza-buscador/blob/staging/seucorretor/ibuscador/templates/ibuscador/contatar_form.html

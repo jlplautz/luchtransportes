@@ -58,11 +58,11 @@
 
       <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
         {% block content %}{% endblock content %}
-        {% include "core/includes/footer.html" %}
-
+        
       </div>
-
+      
     </div>
+    {% include "core/includes/footer.html" %}
 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="{% static 'js/app.bundle.js' %}"></script>

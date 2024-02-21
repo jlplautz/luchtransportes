@@ -2,24 +2,25 @@
 {% extends "./base.html" %}
 
 {% block content %}
+
   <main>
-    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+    <div class="bg-gray-400 flex justify-center pt-6 px-2 space-x-4">
       <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
         <div class="flex items-center justify-center mb-1">
-          <div id="container"></div>
+          <div id="container" style="inline-block"></div>
           <script src="https://code.highcharts.com/highcharts.src.js"></script> 
           <script>Highcharts.chart('container', {{ data|safe }})</script>  
         </div>   
       </div>   
       <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
         <div class="flex items-center justify-between mb-1">
-          <div id="container2"></div>
+          <div id="container2" style="inline-block"></div>
           <script src="https://code.highcharts.com/highcharts.src.js"></script> 
           <script>Highcharts.chart('container2', {{ datafixo|safe }})</script> 
         </div>   
       </div>
     </div>
-    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+    <div class="bg-gray-400 flex justify-center pt-6 px-2 space-x-4">
       <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
         <div class="flex items-center justify-center mb-1">
           <div id="container3"></div>
@@ -27,7 +28,7 @@
           <script>Highcharts.chart('container3', {{ dataJun23|safe }})</script>  
         </div>   
       </div>   
-      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-3">
         <div class="flex items-center justify-between mb-1">
           <div id="container4"></div>
           <script src="https://code.highcharts.com/highcharts.src.js"></script> 
@@ -35,15 +36,15 @@
         </div>   
       </div>
     </div>
-    <div class="bg-gray-400 flex justify-center pt-6 px-2">
-      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+    <div class="bg-gray-400 flex justify-center pt-6 px-2 space-x-4">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-3">
         <div class="flex items-center justify-center mb-1">
           <div id="container5"></div>
           <script src="https://code.highcharts.com/highcharts.src.js"></script> 
           <script>Highcharts.chart('container5', {{ dataJul23|safe }})</script>  
         </div>   
       </div>   
-      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-3">
         <div class="flex items-center justify-between mb-1">
           <div id="container6"></div>
           <script src="https://code.highcharts.com/highcharts.src.js"></script> 
@@ -51,7 +52,8 @@
         </div>   
       </div>
     </div>
-    <div class="bg-gray-400 flex justify-center pt-6 px-2">
+
+    <div class="bg-gray-400 flex justify-center pt-6 px-2 space-x-4">
       <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
         <div class="flex items-center justify-center mb-1">
           <div id="container7"></div>
@@ -67,25 +69,42 @@
         </div>   
       </div>
     </div>
-    <div class="bg-gray-100 flex justify-center pt-6 px-2">
+
+    <div class="bg-gray-400 flex justify-center pt-6 px-2 space-x-4">
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-center mb-1">
+          <div id="container9"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container9', {{ dataJan24|safe }})</script>  
+        </div>   
+      </div>   
+      <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+        <div class="flex items-center justify-between mb-1">
+          <div id="container10"></div>
+          <script src="https://code.highcharts.com/highcharts.src.js"></script> 
+          <script>Highcharts.chart('container10', {{ datafixoJan24|safe }})</script> 
+        </div>   
+      </div>
+    </div>
+    <div class="bg-gray-100 flex justify-center pt-6 px-2 space-x-4">
         <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
           <div class="flex items-center justify-between mb-1">
-          <div id="container9"></div>
+          <div id="container11"></div>
             <script src="https://code.highcharts.com/highcharts.src.js"></script> 
             <script>
-              Highcharts.chart('container9', {{ fretetotal|safe }}) 
+              Highcharts.chart('container11', {{ fretetotal|safe }}) 
             </script> 
           </div>   
         </div>   
         <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
           <div class="flex items-center justify-between mb-1">
-          <div id="container10"></div>
+          <div id="container12"></div>
             <script src="https://code.highcharts.com/highcharts.src.js"></script> 
             <script>
-              Highcharts.chart('container10', {{ fretefeetotal|safe }}) 
+              Highcharts.chart('container12', {{ fretefeetotal|safe }}) 
             </script> 
           </div>   
         </div>   
-    </div>
+    </div> 
   </main>
 {% endblock content %}

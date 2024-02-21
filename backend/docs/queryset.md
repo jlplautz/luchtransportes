@@ -261,3 +261,12 @@ Combustivel
     {'caminhao__placa': 'MVY2C20', 'Valor_Total': Decimal('4715.02'), 'litros': 0.0}]>
 
 https://github.com/corretaza/corretaza-buscador/blob/staging/seucorretor/ibuscador/templates/ibuscador/contatar_form.html
+
+
+
+## Como verificar os nomes dos campos do Model
+
+luchtransportes on  main is 📦 v0.1.0 via 🐍 v3.11.0 (luchtransportes-py3.11) took 3m57s 
+>>> python manage.py shell_plus
+>>> User._meta.get_fields()
+>>> [ field.name for field in User._meta.get_fields()]

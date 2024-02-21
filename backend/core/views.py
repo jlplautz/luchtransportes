@@ -475,6 +475,97 @@ def dashboard(request):
         ],
     }
 
+    # Jan24*******************************************************************
+
+    datasetJan24 = (
+        frete.values('caminhao__placa')
+        .filter(data__month=1)  # lockup
+        .annotate(
+            fadvlrJan24_count=Sum('frete_adiant_valor'),
+            fsdvlrJan24_count=Sum('frete_saldo_valor'),
+            distanciaJan24_count=Sum('distancia'),
+        )
+        .order_by('caminhao')
+    )
+
+    datasetfixoJan24 = (
+        fretefee.values('caminhao__placa')  # lockup
+        .filter(data__month=1)
+        .annotate(
+            adiantfixoJan24_count=Sum('valor_adiant_fixo'),
+            saldofixoJan24_count=Sum('valor_saldo_fixo'),
+            descfixoJan24_count=Sum('valor_desc_fixo'),
+        )
+        .order_by('caminhao')
+    )
+
+    categories = list()
+    fadvlrJan24_series_data = list()
+    fsdvlrJan24_series_data = list()
+    distanciaJan24_series_data = list()
+    adiantfixoJan24_series_data = list()
+    saldofixoJan24_series_data = list()
+    descfixoJan24_series_data = list()
+
+    for entry in datasetJan24:
+        categories.append(entry['caminhao__placa'])
+        fadvlrJan24_series_data.append(entry['fadvlrJan24_count'])
+        fsdvlrJan24_series_data.append(entry['fsdvlrJan24_count'])
+        distanciaJan24_series_data.append(entry['distanciaJan24_count'])
+
+    for entry in datasetfixoJan24:
+        categories.append(entry['caminhao__placa'])
+        adiantfixoJan24_series_data.append(entry['adiantfixoJan24_count'])
+        saldofixoJan24_series_data.append(entry['saldofixoJan24_count'])
+        descfixoJan24_series_data.append(entry['descfixoJan24_count'])
+
+    dataJan24 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES - Janeiro/24'},
+        'xAxis': {'categories': categories},
+        # 'xAxis': {'categories':  labels[::-1]},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in fadvlrJan24_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in fsdvlrJan24_series_data],
+            },
+            {
+                'name': 'KMs_Rodado',
+                'data': [float(kms) for kms in distanciaJan24_series_data],
+            },
+        ],
+    }
+
+    datafixoJan24 = {
+        'chart': {'type': 'column'},
+        'title': {'text': 'FRETES-FIXO - Janeiro/24'},
+        'xAxis': {'categories': categories},
+        'series': [
+            {
+                'name': 'Adiantamento',
+                'data': [
+                    float(adiantamento)
+                    for adiantamento in adiantfixoJan24_series_data
+                ],
+            },
+            {
+                'name': 'Saldo',
+                'data': [float(saldo) for saldo in saldofixoJan24_series_data],
+            },
+            {
+                'name': 'Desconto',
+                'data': [float(desc) for desc in descfixoJan24_series_data],
+            },
+        ],
+    }
+
     return render(
         request,
         template_name,
@@ -487,6 +578,8 @@ def dashboard(request):
             'datafixoJul23': datafixoJul23,
             'dataAgo23': dataAgo23,
             'datafixoAgo23': datafixoAgo23,
+            'dataJan24': dataJan24,
+            'datafixoJan24': datafixoJan24,
             'fretetotal': fretetotal,
             'fretefeetotal': fretefeetotal,
         },
